@@ -1,6 +1,6 @@
 # tugasclara
 
-<img src = "Minggu10.jpg" >
+<img src = "Minggu10.JPG" >
 
 ## Getting Started
 
