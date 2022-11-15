@@ -1,6 +1,6 @@
 # tugasclara
 
-A new Flutter project.
+<img src = "Minggu10.JPG" >
 
 ## Getting Started
 
