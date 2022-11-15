@@ -21,14 +21,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -36,7 +29,9 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+
 class _MyHomePageState extends State<MyHomePage> {
+  double _currentSliderValue = 10;
   int _counter = 0;
   double _inputuser = 0;
   double _kevin = 0;
@@ -45,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String newValue = "Kelvin";
   double _result = 0;
   String changeValue = "";
+  TextEditingController sliderController = TextEditingController();
   
   List<String> listViewItem = <String>[];
 
@@ -54,13 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   void perhitunganSuhu(){
     setState(() {
-      _inputuser = double.parse(inputController.text);
+      _currentSliderValue = double.parse(sliderController.text);
 
       if(newValue == "Kelvin"){
-        _result = _inputuser + 273;
+        _result = _currentSliderValue + 273;
         listViewItem.add(" Hasil dari Kelvin : " + _result.toString());
       }else{
-        _result = (4/5) * _inputuser;
+        _result = (4/5) * _currentSliderValue;
         listViewItem.add(" Hasil dari Reamur : " + _result.toString());
       }
     });
@@ -95,8 +91,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Container(
-              child : Input(myController: inputController,),
+              child : Input(myController: sliderController,),
+
             ),
+        Slider(
+          value: _currentSliderValue,
+          max: 100,
+          divisions: 10,
+          label: _currentSliderValue.round().toString(),
+          onChanged: (double value) {
+            setState(() {
+              _currentSliderValue = value;
+              sliderController.text = _currentSliderValue.toString();
+              print(_currentSliderValue);
+            });
+          },
+        ),
             Container(
               child: DropdownButton<String>(items: 
                 listItem.map((String value){
@@ -195,9 +205,6 @@ class Input extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: myController,
-      decoration: InputDecoration(
-        hintText: "Masukkan Nilai "
-      ),
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.digitsOnly,
       ],
