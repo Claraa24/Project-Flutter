@@ -1,9 +1,8 @@
 # MOVIE REVIEW
-Home Screen
 <img src = "home.JPG">
-Detail Screen
+# Detail Screen
 <img src = "details.JPG">
-Search Screen
+# Search Screen
 <img src = "search.JPG">
 
 
