@@ -1,3 +1,5 @@
+
+
 # MOVIE REVIEW
 <img src = "home.JPG">
 # Detail Screen
